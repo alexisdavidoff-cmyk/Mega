@@ -1,0 +1,5 @@
+{
+  "name": "Copy of GPS Fleet Dashboard con equipos",
+  "description": "An interactive dashboard built with HTML, CSS, and vanilla JavaScript to visualize and filter GPS fleet data from a CSV file. It uses Chart.js for dynamic charts and PapaParse for CSV processing. Analyze vehicle reporting status by dependency, municipality, and coverage zone.",
+  "requestFramePermissions": []
+}

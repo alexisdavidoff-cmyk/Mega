@@ -1,0 +1,208 @@
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* Estilos para el Modal */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+    padding: 1rem;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 0.75rem; /* rounded-xl */
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* shadow-2xl */
+    width: 100%;
+    max-width: 56rem; /* max-w-4xl */
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    animation: slideIn 0.3s ease-out;
+}
+
+/* Modal más grande para el planificador */
+.modal-planner {
+    max-width: 90rem; /* max-w-7xl -> 90rem */
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-overlay.hidden {
+    display: none;
+}
+
+/* Estilos para el footer del modal del planificador */
+.modal-content footer {
+    flex-shrink: 0;
+}
+
+/* Estilos para los botones de reasignación en el popup de Leaflet */
+.leaflet-popup-content .planner-reassign-btn {
+    width: 100%;
+    padding: 6px 10px;
+    margin-top: 4px;
+    background-color: #e2e8f0; /* bg-slate-200 */
+    color: #1e293b; /* text-slate-800 */
+    border: none;
+    border-radius: 0.375rem; /* rounded-md */
+    cursor: pointer;
+    font-weight: 500;
+    text-align: left;
+    transition: background-color 0.2s;
+}
+
+.leaflet-popup-content .planner-reassign-btn:hover {
+    background-color: #cbd5e1; /* bg-slate-300 */
+}
+
+.leaflet-popup-content hr {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-color: #e2e8f0; /* border-slate-200 */
+}
+
+/* Estilos para los marcadores del mapa */
+.custom-div-icon {
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.custom-div-icon .marker-pin {
+    width: 30px;
+    height: 30px;
+    border-radius: 50% 50% 50% 0;
+    position: absolute;
+    transform: rotate(-45deg);
+    left: 50%;
+    top: 50%;
+    margin: -15px 0 0 -15px;
+    border: 1px solid white;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.custom-div-icon span {
+    position: relative;
+    z-index: 1;
+    top: 6px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.marker-total .marker-pin { background: #3b82f6; /* bg-blue-500 */ }
+.marker-reported .marker-pin { background: #16a34a; /* bg-green-600 */ }
+.marker-not-reported .marker-pin { background: #dc2626; /* bg-red-600 */ }
+
+/* Colores para marcadores de técnicos */
+.marker-tech-1 .marker-pin { background: #16a34a; /* Verde */ }
+.marker-tech-2 .marker-pin { background: #3b82f6; /* Azul */ }
+.marker-tech-3 .marker-pin { background: #9333ea; /* Purpura */ }
+
+/* Estilo para base de técnicos */
+.tech-base-icon {
+    font-size: 24px;
+    text-shadow: 0 0 3px black;
+}
+
+/* Insignia de frecuencia para Planificador de Zonas */
+.marker-frequency-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: white;
+    color: #dc2626; /* red-600 */
+    font-size: 12px;
+    font-weight: bold;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #dc2626;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    z-index: 2;
+}
+
+
+/* --- Estilos para el mapa del Planificador de Viajes --- */
+/* Marcadores de selección */
+.trip-selection-marker {
+    background-color: #3b82f6; /* blue-500 */
+    border: 2px solid white;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.trip-selection-marker.selected {
+    background-color: #16a34a; /* green-600 */
+    transform: scale(1.5);
+}
+
+/* Marcadores de ruta calculada */
+.trip-marker-icon {
+    background: #4f46e5; /* bg-indigo-600 */
+    border-radius: 50%;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    line-height: 28px;
+    width: 30px;
+    height: 30px;
+    border: 2px solid white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.trip-marker-icon.trip-marker-base {
+    background: #f59e0b; /* bg-amber-500 */
+    font-size: 20px;
+    line-height: 28px;
+}
+
+/* Animación para los resultados del planificador de viajes */
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Estilos para las pestañas de navegación */
+.tab-btn {
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    color: #475569; /* text-slate-600 */
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s ease-in-out;
+    margin-bottom: -2px; /* Alinea el borde inferior con el borde del contenedor */
+}
+
+.tab-btn:hover:not(:disabled) {
+    color: #0f172a; /* text-slate-900 */
+}
+
+.tab-btn.active {
+    color: #2563eb; /* text-blue-600 */
+    border-bottom-color: #2563eb;
+}
+
+.tab-btn:disabled {
+    color: #94a3b8; /* text-slate-400 */
+    cursor: not-allowed;
+}
